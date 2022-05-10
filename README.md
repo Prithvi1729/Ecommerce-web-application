@@ -24,10 +24,6 @@ Welcome to my React and Node tutorial to build a fully-functional e-commerce web
 ## Run Locally
 
 ### 1. Clone repo
-
-```
-$ git clone git@github.com:basir/mern-amazona.git
-$ cd mern-amazona
 ```
 
 ### 2. Create .env File
