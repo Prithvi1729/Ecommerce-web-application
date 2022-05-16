@@ -19,7 +19,6 @@ Welcome to my React and Node tutorial to build a fully-functional e-commerce web
 - Node & Express: Web API, Body Parser, File Upload, JWT
 - MongoDB: Mongoose, Aggregation
 - Development: ESLint, Babel, Git, Github,
-- Deployment: Heroku
 
 ## Run Locally
 
