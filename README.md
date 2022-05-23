@@ -1,6 +1,6 @@
 
 
-- Run Here : [https://mern-amazona-app.herokuapp.com](https://mern-amazona-app.herokuapp.com)
+-You can See here : [https://mern-amazona-app.herokuapp.com](https://mern-amazona-app.herokuapp.com)
 
 Features
 
