@@ -1,130 +1,91 @@
-MERN Stack E-commerce Web Application
-Project Overview
+# MERN E-commerce Web Application
 
-This is a full-stack E-commerce web application built using the MERN stack (MongoDB, Express.js, React.js, Node.js).
-The application allows users to browse products, add them to a shopping cart, and place orders. Admins can manage products, view orders, and monitor users.
+This repository contains a full-stack e-commerce app:
 
-Features
-User Features
+- **Frontend:** React (Create React App)
+- **Backend:** Node.js + Express
+- **Database:** MongoDB (Mongoose)
 
-User registration and login with JWT-based authentication
+## 1) Run locally
 
-Browse products with categories, search, and filters
+### Prerequisites
 
-View product details with images, price, and description
+- Node.js 18+
+- npm 9+
+- MongoDB database (local or Atlas)
 
-Add, remove, and update items in shopping cart
+### Environment variables
 
-Place orders and view order history
+Create `backend/.env` from `backend/.env.example` and set at minimum:
 
-Admin Features
+```bash
+JWT_SECRET=your-secret
+MONGODB_URI=your-mongodb-connection-string
+PAYPAL_CLIENT_ID=sb
+```
 
-Add, update, and delete products
+You can keep the rest empty unless you need uploads/maps/mail features.
 
-View all orders and update order status
+### Install dependencies
 
-Manage users and monitor activity
-
-Technologies Used
-Layer	Technology
-Frontend	React.js, React Router, Redux / Context API
-Backend	Node.js, Express.js
-Database	MongoDB, Mongoose
-Authentication	JWT, bcrypt
-Styling	CSS / TailwindCSS / Bootstrap
-Payment Integration	Stripe / PayPal (optional)
-Project Structure
-mern-ecommerce/
-│
-├── backend/
-│   ├── models/       # Database schemas
-│   ├── routes/       # API routes
-│   ├── controllers/  # Business logic
-│   └── server.js     # Entry point for backend
-│
-└── frontend/
-    ├── src/
-    │   ├── components/  # Reusable UI components
-    │   ├── pages/       # Application pages (Home, Product, Cart)
-    │   ├── redux/       # State management (Redux)
-    │   └── App.js       # Main frontend entry
-
-Installation and Setup
-Backend
-
-Navigate to backend folder:
-
-cd backend
-
-
-Install dependencies:
-
+```bash
 npm install
+npm --prefix backend install
+npm --prefix frontend install
+```
 
+### Start development servers
 
-Create a .env file and add:
+Use two terminals:
 
-MONGO_URI=<your_mongodb_connection_string>
-JWT_SECRET=<your_jwt_secret_key>
+**Terminal 1 (backend API):**
 
+```bash
+npm run start:backend
+```
 
-Start the backend server:
+**Terminal 2 (frontend app):**
 
-npm run dev
+```bash
+npm run start:frontend
+```
 
-Frontend
+- Frontend: `http://localhost:3000`
+- Backend API: `http://localhost:5000`
 
-Navigate to frontend folder:
+### Production-style local run
 
-cd frontend
-
-
-Install dependencies:
-
-npm install
-
-
-Start the frontend server:
-
+```bash
+npm run build
 npm start
+```
 
-API Endpoints
-Users
+This builds the frontend and serves it through Express.
 
-POST /api/users/register – Register new user
+---
 
-POST /api/users/login – User login
+## 2) Deploy on Vercel
 
-GET /api/users/profile – Get user profile (protected)
+This repo is configured for Vercel using:
 
-Products
+- `api/index.js` as the serverless API entry point
+- `frontend` as a static React build
+- `vercel.json` for API + SPA routing
 
-GET /api/products – Get all products
+### Steps
 
-GET /api/products/:id – Get single product details
+1. Push this repo to GitHub/GitLab/Bitbucket.
+2. In Vercel, **Add New Project** and import the repo.
+3. Keep root as project directory.
+4. In **Environment Variables**, set:
+   - `MONGODB_URI`
+   - `JWT_SECRET`
+   - `PAYPAL_CLIENT_ID`
+   - Any optional variables you use (`GOOGLE_API_KEY`, `CLOUDINARY_*`, `MAILGUN_*`).
+5. Deploy.
 
-POST /api/products – Add product (admin only)
+### Notes
 
-PUT /api/products/:id – Update product (admin only)
-
-DELETE /api/products/:id – Delete product (admin only)
-
-Orders
-
-POST /api/orders – Create a new order
-
-GET /api/orders/myorders – Get logged-in user orders
-
-GET /api/orders – Get all orders (admin only)
-
-Future Enhancements
-
-Payment gateway integration (Stripe / PayPal)
-
-Product reviews and ratings
-
-Wishlist functionality
-
-Real-time notifications for orders
-
-Responsive mobile-first design
+- All `/api/*` routes are handled by the Express serverless function.
+- All other routes are served as frontend SPA routes.
+- If you use external services (Cloudinary, Mailgun, Google Maps), set those env vars in Vercel too.
